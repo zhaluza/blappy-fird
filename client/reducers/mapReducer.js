@@ -1,5 +1,5 @@
 const initialState = {
-  speed: 0,
+  speed: 50,
   pipes: [{
     x1: 0,
     x2: 0,
@@ -30,18 +30,45 @@ function mapReducer(state = initialState, action) {
       else if (birdHeight <= pipe.y1) {
         gameOver = true;
       }
-
       const newState = {
         gameOver
       };
       
       return state = {...state, ...newState};
     }
+    case "MOVEPIPES": {
+      const { pipes } = action.payload;
+      for (let i = 0; i < pipes.length; i++) {
+        pipes[i].x1 -= speed;
+        pipes[i].x2 -= speed;
+      }
+      const newState = {
+        pipes
+      };
+      return state = {...state, ...newState};
+    }
     case "NEWPIPE": {
-
-
-
-      return state = {...state, ...action.payload};
+      const { pipes, height } = action.payload;
+      const newY1  = Math.floor(Math.random()*height);
+      const newY2 = newY1 + 50;
+      pipes.push({
+        x1: 150,
+        x2: 200,
+        y1: newY1, 
+        y2: newY2,
+      });
+      const newState = {
+        pipes
+      };
+      return state = {...state, ...newState};
+    }
+    case "REMOVEPIPE": {
+      const {pipes} = action.payload;
+      pipes.shift();
+      const newState = {
+        pipes
+      };
+      return state = {...state, ...newState};
     }
     default:
       return state;
