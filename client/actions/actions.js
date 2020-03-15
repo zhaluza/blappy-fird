@@ -1,8 +1,11 @@
 // we will call this action 
 export const moving = (yPosition, gravity, flapping, maxPosition) => {
   yPosition += gravity;
-  if (yPosition >= maxPosition) {
-    flapping = false;
+  if (maxPosition) {
+    if (yPosition >= maxPosition) {
+      flapping = false;
+      maxPosition = undefined;
+    }
   }
   if (flapping) {
     gravity += 10; //will need adjust for gampelay
@@ -12,8 +15,22 @@ export const moving = (yPosition, gravity, flapping, maxPosition) => {
   }
   return {
     type: "FLAPPING",
-    yPosition: yPosition,
-    gravity: gravity,
-    flapping: flapping
+    payload: {
+      yPosition: yPosition,
+      gravity: gravity,
+      flapping: flapping
+    }
   };
-}
+};
+
+export const jump = (yPosition, maxPosition, flapping, jumpHeight) => {
+  flapping = true;
+  maxPosition = yPosition + jumpHeight;
+  return {
+    type: "FLAP",
+    payload: {
+      maxPosition: maxPosition,
+      flapping: flapping
+    }
+  };
+};
