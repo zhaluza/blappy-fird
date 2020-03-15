@@ -37,3 +37,43 @@ export const jump = (yPosition, maxPosition, flapping, jumpHeight) => {
     }
   };
 };
+
+//yPosition from bird state
+export const collision = (yPosition, height, pipes) => {
+  return {
+    type: "CHECKCOLLISION",
+    payload: {
+      yPosition,
+      height,
+      pipes
+    }
+  };
+};
+
+export const move = (pipes) => {
+  return {
+    type: "MOVEPIPES",
+    payload: {
+      pipes
+    }
+  };
+};
+
+export const newPipe = (pipes, height) => {
+  return {
+    type: "NEWPIPE",
+    payload: {
+      pipes, 
+      height
+    }
+  };
+};
+
+export const removePipe = (pipes) => {
+  return {
+    type: "REMOVEPIPE",
+    payload: {
+      pipes
+    }
+  };
+};
