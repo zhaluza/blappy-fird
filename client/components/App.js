@@ -1,5 +1,5 @@
 import React from 'react';
-import Bird from './Bird';
+import Bird from './Bird/Bird';
 import PipeController from './map/PipeController';
 
 const App = props => {
