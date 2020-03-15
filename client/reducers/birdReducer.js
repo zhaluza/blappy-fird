@@ -15,6 +15,7 @@ function birdReducer (state = initialState, action) {
         if (yPosition >= maxPosition) {
           flapping = false;
           maxPosition = undefined;
+          gravity = 0;
         }
       }
       if (flapping) {
