@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Bird = props => {
-  return <p>Bird</p>;
+  return <div>Bird</div>;
 };
 
 export default Bird;
